@@ -1,18 +1,12 @@
 {
-  "name": "node-api",
+  "name": "bbrassartme",
   "main": "server.js",
   "dependencies": {
-    "bcrypt-nodejs": "0.0.3",
+    "angular": "^1.6.2",
     "body-parser": "~1.0.1",
-    "connect-flash": "^0.1.1",
-    "cookie-parser": "^1.4.3",
     "express": "~4.0.0",
-    "express-session": "^1.14.2",
-    "jsonwebtoken": "^7.2.1",
-    "method-override": "^2.3.7",
     "mongoose": "~3.6.13",
     "morgan": "^1.7.0",
-    "passport": "^0.3.2",
-    "passport-local": "^1.0.0"
+    "nodemon": "^1.11.0"
   }
 }

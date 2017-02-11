@@ -8,30 +8,28 @@ var app        = express();                 // define our app using express
 var bodyParser = require('body-parser');
 var morgan     = require('morgan');
 var mongoose   = require('mongoose');
-var bears      = require('./app/routes/models/bears');
-var users      = require('./app/routes/models/users');
-var test       = require('./app/routes/test');
-var auth       = require('./app/routes/auth');
-var authMiddleware = require('./app/routes/auth_middleware');
+var years      = require('./app/routes/models/years');
+var blogposts       = require('./app/routes/models/blogs');
+var home       = require('./app/routes/home');
 
-mongoose.connect('mongodb://localhost/bear');
+mongoose.connect('mongodb://localhost/bbrassart_development');
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
+app.use('/app', express.static(__dirname + '/public/javascripts/angular'));
+app.use('/scripts', express.static(__dirname + '/node_modules/angular/'));
 
 var port = process.env.PORT || 6060;        // set our port
 
 // REGISTER OUR ROUTES
 // =============================================================================
 
-app.use('/', test);
-app.use('/api', auth);
-app.use('/api', authMiddleware, bears);
-app.use('/api', bears);
-app.use('/api', authMiddleware, users);
+app.use('/', home);
+app.use('/api/v1', years);
+app.use('/api/v1', blogposts);
 
 // START THE SERVER
 // =============================================================================
