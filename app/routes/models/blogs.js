@@ -14,7 +14,7 @@ router.route('/blogs')
 router.route('/blogs/:index')
 
     .get(function(req, res) {
-        Blogs.find({currentIndex: req.params.index}, function(err, blog) {
+        Blogs.findOne({currentIndex: req.params.index}, function(err, blog) {
             if (err)
                 res.send(err);
             res.json(blog);

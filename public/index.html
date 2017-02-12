@@ -5,13 +5,106 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
         <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-        <script src="/scripts/angular.js"></script>
+        <script src="scripts/angular/angular.js"></script>
+        <script src="scripts/angular-animate/angular-animate.js"></script>
+        <script src="scripts/angular-resource/angular-resource.js"></script>
+        <script src="scripts/angular-sanitize/angular-sanitize.js"></script>
+        <script src="scripts/angular-loading-overlay-spinjs/dist/angular-loading-overlay-spinjs.js"></script>
+        <script src="scripts/angular-loading-overlay/dist/angular-loading-overlay.js"></script>
+        <script src="app/js/core.js"></script>
+        <script src="app/js/directives/blogScreenDirective.js"></script>
+        <script src="app/js/directives/githubScreenDirective.js"></script>
+        <script src="app/js/directives/cvScreenDirective.js"></script>
+        <script src="app/js/services/mainService.js"></script>
+        <script src="app/js/services/blogApiService.js"></script>
+        <script src="app/js/services/apiService.js"></script>
+        <script src="app/js/services/githubApiService.js"></script>
+        <script src="app/js/services/cvApiService.js"></script>
 
-        <script src="/app/core.js"></script>
         <meta name="description" content="Welcome to BBrassart.me, my personal site">
         <title>Baptiste Brassart</title>
     </head>
-    <body ng-controller="mainController">
-        {{test}}
+    <body>
+        <div class="header">
+            <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed" >
+                <a href="" id="my_name" class="pure-menu-heading">Baptiste Brassart</a>
+                <div class="desktop-nav-menu">
+                    <ul class="pure-menu-list">
+                        <li class="pure-menu-item"><a href="#projects" class="pure-menu-link">Projects</a></li>
+                        <li class="pure-menu-item"><a href="#blog" class="pure-menu-link">Blog</a></li>
+                        <li class="pure-menu-item"><a href="#github" class="pure-menu-link">GitHub</a></li>
+                        <li class="pure-menu-item"><a href="#socialmedia" class="pure-menu-link">Social media</a></li>
+                        <li class="pure-menu-item"><a href="#cv" class="pure-menu-link">CV</a></li>
+                        <li class="pure-menu-item"><a href="#contact" class="pure-menu-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="mobile-nav-menu">
+                    <select>
+                        <option value="" selected="selected">Go to</option>
+                        <option value="#projects">Projects</option>
+                        <option value="#blog">Blog</option>
+                        <option value="#github"> GitHub</option>
+                        <option value="#socialmedia">Social media</option>
+                        <option value="#cv">CV</option>
+                        <option value="#contact">Contact</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="splash-container">
+            <div class="splash">
+                <h1 class="splash-head">Welcome to my site</h1>
+                <p class="splash-subhead">
+                    Ruby and Javascript developer  //  Board culture geek
+                </p>
+                <p>
+                    <a href="#blog" class="pure-button pure-button-primary">Visit my blog</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="content-wrapper">
+            <div class="ribbon l-box-lrg pure-g" id="projects">
+                <div class="l-box-lrg is-center pure-u-sm-1-1 pure-u-md-1-2 pure-u-lg-2-5">
+                    <a href="http://ownthespot.tv" target=_blank>
+                        <img class="pure-img-responsive" alt="File Icons" width="350px" src="https://s3-us-west-2.amazonaws.com/bbrassart/ownthespot_project.jpg">
+                    </a>
+                </div>
+                <div class="pure-u-1 pure-u-md-1-2 is-center pure-u-lg-3-5">
+                    <div class="is-center">
+                        <h2 class="content-head content-head-ribbon">Projects</h2>
+                        <div class="is-center">
+                            <a href="http://ownthespot.tv/" target=_blank>
+                                <h1 class="splash-head">OwnTheSpot.TV</h1>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <blogscreen></blogscreen>
+            <githubscreen></githubscreen>
+            <div class="content is-center posts--column" id="socialmedia">
+                <h2 style="padding-top: 8px;" class="content-head">Social media</h2>
+
+                <div class="pure-g">
+                    <div class="pure-u-lg-1-2 pure-u-md-1 media--sidebar">
+                        <a class="twitter-timeline"  href="https://twitter.com/bbrassart" data-widget-id="575986781394468864">Tweets by @bbrassart</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+                    </div>
+                    <div class="pure-u-lg-1-2 pure-u-md-1 media--sidebar">
+                        <!-- LightWidget WIDGET --><script src="//lightwidget.com/widgets/lightwidget.js"></script><iframe src="//lightwidget.com/widgets/7a5522ffe73e519f91aeab39e4cbfdbc.html" id="lightwidget_7a5522ffe7" name="lightwidget_7a5522ffe7"  scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width: 100%; border: 0; overflow: hidden;"></iframe>
+                    </div>
+                </div>
+
+
+            </div>
+            <cvscreen></cvscreen>
+
+            <!--<%= render "helpers/contact_form.html.erb" %>-->
+    <!---->
+
+
     </body>
 </html>

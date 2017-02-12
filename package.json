@@ -3,10 +3,16 @@
   "main": "server.js",
   "dependencies": {
     "angular": "^1.6.2",
+    "angular-animate": "^1.6.2",
+    "angular-loading-overlay": "^1.1.1",
+    "angular-loading-overlay-spinjs": "^1.0.2",
+    "angular-resource": "^1.6.2",
+    "angular-sanitize": "^1.6.2",
     "body-parser": "~1.0.1",
     "express": "~4.0.0",
     "mongoose": "~3.6.13",
     "morgan": "^1.7.0",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "spin": "0.0.1"
   }
 }

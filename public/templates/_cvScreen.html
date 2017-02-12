@@ -1,0 +1,67 @@
+<div id="cv">
+    <div bs-loading-overlay="body-cv-loading">
+        <div bs-loading-overlay="header-cv-loading">
+            <div class="ribbon l-box-lrg pure-g">
+                <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5">
+                    <img class="pure-img-responsive" alt="File Icons" width="180" src="https://s3-us-west-2.amazonaws.com/bbrassart/profile_picture.png">
+                </div>
+                <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
+                    <h2 class="content-head content-head-ribbon">Curriculum Vitae
+                        <button class="pure-button button-xsmall button-primary reduce-cv" ng-click="vm.reduceCv()" ng-show="vm.isShowing">
+                            Reduce CV
+                        </button>
+                    </h2>
+                    <button class="button-success pure-button triggerCV" ng-click="vm.showExperiences(2017)">2017</button>
+                    <button class="pure-button-primary pure-button triggerCV" ng-click="vm.showExperiences(2016)">2016</button>
+                    <button class="button-error pure-button triggerCV" ng-click="vm.showExperiences(2015)">2015</button>
+                    <button class="violet-bg pure-button triggerCV" ng-click="vm.showExperiences(2014)">2014 - 2012</button>
+                    <br>
+                </div>
+            </div>
+        </div>
+        <div class="ribbon">
+            <div id="limitCv">
+                <div ng-repeat="xp in vm.experiences" class="experiences" ng-show="vm.isShowing" ng-cloak>
+                    <div ng-class="vm.isDesktop() ? 'line-separator' : ''"></div>
+                    <div class="xp-col pure-u-sm-1-1" ng-class="vm.isDesktop() ? 'med-col' : ''">
+                        <p>
+                            <b>{{xp.title}}</b> at
+                            <a class="company-link" target=_blank ng-href={{xp.official_url}}>
+                                {{xp.company_name}}
+                            </a>
+                        </p>
+                        <span ng-bind-html=xp.description></span>
+                    </div>
+                    <div class="xp-col pure-u-md-1-2 pure-u-sm-1-1 cv-column">
+                        <p>
+                            <b>{{xp.location}}</b>
+                        </p>
+                        <div class="pure-u-md-1-2">
+                            <p>Starting date: {{xp.starting_date}}</p>
+                            <p ng-show="xp.ending_date">
+                                Ending date: {{xp.ending_date}}
+                            </p>
+                            <p ng-show="!xp.ending_date">
+                                Current
+                            </p>
+                        </div>
+                        <div class="pure-u-md-1-2">
+                            <a ng-href={{xp.official_url}} target=_blank>
+                                <img ng-src={{xp.company_logo}} class="xp-logo" height=100px>
+                            </a>
+                        </div>
+                        <br><br>
+                    <span ng-repeat="tag in xp.tags track by $index">
+                        <span class="post-category post-category-{{vm.tagColors[$index]}}">
+                            {{tag}}
+                        </span>
+                    </span>
+                    </div>
+                    <br><br>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

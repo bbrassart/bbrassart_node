@@ -1,0 +1,69 @@
+<div class="content posts--column anchor" id="blog">
+    <div bs-loading-overlay="blog-loading"
+         bs-loading-overlay-delay="1000">
+        <h2 style="padding-top: 8px;" class="content-head is-center">Blog #Unchained</h2>
+        <div class="posts" id="showBlog">
+            <p>Post {{vm.blog.currentIndex + 1}} out of 4</p>
+            <section class="post">
+                <header class="post-header">
+                    <img class="post-avatar" alt="Baptiste's avatar"
+                         height="48" width="48" ng-src={{vm.blog.author_logo}}>
+                    <h2 class="post-title">
+                        {{vm.blog.title}}
+                    </h2>
+                    <p class="post-meta">{{vm.blog.date}}</p>
+                    <p class="post-meta">
+                        By <a class="post-author" href="#">{{vm.blog.author}}</a> under
+                <span ng-repeat="tag in vm.blog.tags track by $index">
+                    <a class="post-category post-category-{{vm.tagColors[$index]}}">
+                        {{tag}}
+                    </a>
+                </span>
+                    <div class='social--buttons'>
+                        <a href="https://twitter.com/bbrassart" class="twitter-follow-button" data-show-count="false" data-size="large">
+                            Follow @bbrassart</a>
+                    </div>
+                    </p>
+                </header>
+                <img alt="{{vm.blog.image_caption}}" class="first--image__post pure-img-responsive" ng-src={{vm.blog.image}}>
+                <span ng-bind-html="vm.blog.intro"></span>
+                <div class="is-center show-me-more" ng-show="!vm.longForm" ng-click="vm.isLongForm()">
+                    <button class="pure-button pure-button-primary">Show me more</button>
+                </div>
+                <div class="long-form-blog" ng-show="vm.longForm">
+                    <span ng-bind-html="vm.trustedLongText"></span>
+                </div>
+                <div ng-show="vm.longForm" class="long-form-actions is-center">
+                    <div class="pure-u-1">
+                        <div class="is-center">
+                            <button ng-click="vm.backToSmallForm()" class="pure-button pure-button-primary" id="makeSmallerText">
+                                Make me smaller
+                            </button>
+                            <a ng-href="/blog/{{vm.blog.url}}">
+                                <button class="pure-button pure-button-primary">
+                                    Go to the page
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="pure-u-1">
+                <div class="is-center">
+                    <button ng-if="vm.isLast(vm.blog.currentIndex) || vm.isMiddle(vm.blog.currentIndex)"
+                            class="pure-button pure-button-primary"
+                            ng-click="vm.triggerPreviousPost(vm.blog.currentIndex)">
+                        <i class="fa fa-step-backward"></i>
+                        Previous post
+                    </button>
+                    <button ng-if="vm.isFirst(vm.blog.currentIndex) || vm.isMiddle(vm.blog.currentIndex)"
+                            class="pure-button pure-button-primary"
+                            ng-click="vm.triggerNextPost(vm.blog.currentIndex)">
+                        Next post
+                        <i class="fa fa-step-forward"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -19,8 +19,10 @@ mongoose.connect('mongodb://localhost/bbrassart_development');
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
-app.use('/app', express.static(__dirname + '/public/javascripts/angular'));
-app.use('/scripts', express.static(__dirname + '/node_modules/angular/'));
+
+
+app.use('/app', express.static(__dirname + '/public'));
+app.use('/scripts', express.static(__dirname + '/node_modules'));
 
 var port = process.env.PORT || 6060;        // set our port
 
