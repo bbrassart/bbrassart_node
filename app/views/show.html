@@ -1,0 +1,97 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link type="text/css" rel="stylesheet" href="../app/css/pure-min.css">
+    <link type="text/css" rel="stylesheet" href="../app/css/purecss_template.css">
+    <link type="text/css" rel="stylesheet" href="../app/css/main.css">
+    <meta name="description" content="Welcome to BBrassart.me, my personal site">
+    <title>Baptiste Brassart</title>
+</head>
+<body>
+<div class="header">
+    <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed" >
+        <a href="" id="my_name" class="pure-menu-heading">Baptiste Brassart</a>
+        <div class="desktop-nav-menu">
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item"><a href="#projects" class="pure-menu-link">Projects</a></li>
+                <li class="pure-menu-item"><a href="#blog" class="pure-menu-link">Blog</a></li>
+                <li class="pure-menu-item"><a href="#github" class="pure-menu-link">GitHub</a></li>
+                <li class="pure-menu-item"><a href="#socialmedia" class="pure-menu-link">Social media</a></li>
+                <li class="pure-menu-item"><a href="#cv" class="pure-menu-link">CV</a></li>
+                <li class="pure-menu-item"><a href="#contact" class="pure-menu-link">Contact</a></li>
+            </ul>
+        </div>
+        <div class="mobile-nav-menu">
+            <select>
+                <option value="" selected="selected">Go to</option>
+                <option value="#projects">Projects</option>
+                <option value="#blog">Blog</option>
+                <option value="#github"> GitHub</option>
+                <option value="#socialmedia">Social media</option>
+                <option value="#cv">CV</option>
+                <option value="#contact">Contact</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="content posts--column">
+    <h2 class="content-head is-center blog--main__title">Blog #Unchained</h2>
+    <div class="posts">
+        <section class="post">
+            <header class="post-header">
+                <img class="post-avatar" alt="Baptiste's avatar"
+                     height="48" width="48" src="<%=blog.author_logo%>">
+                <h2 class="post-title"><%=blog.title%></h2>
+                <p class="post-meta">
+                    <a class="post-author"><%=blog.author%></a> under
+                    <% blog.tags.forEach(function(tag, index) { %>
+                    <% var color = ["design", "pure", "js", "yui"][index] %>
+                    <a class='post-category post-category-<%=color%>'><%= tag %></a>
+                    <% }); %>
+                </p>
+            </header>
+            <div class="social--buttons">
+                <a href="https://twitter.com/share" class="twitter-share-button"{count} data-text='<%= blog.title %>' data-via="bbrassart" data-size="large">
+                    Tweet
+                </a>
+                <a href="https://twitter.com/bbrassart" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @bbrassart</a>
+            </div>
+            <img alt="<%=blog.image_caption%>" class="first--image__dedicatedpage pure-img-responsive"
+                 src="<%=blog.image%>">
+            <%=blog.intro.html_safe %>
+            <p class="post-meta"><%=blog.date%></p>
+            <%-blog.text%>
+            <div id="comments">
+            </div>
+        </section>
+    </div>
+</div>
+
+<div class="ribbon l-box-lrg pure-g">
+
+    <div class="l-box-lrg is-center pure-u-sm-1-1 pure-u-md-1-2 pure-u-lg-2-5">
+        <i class="pure-img-responsive fa fa-spin fa-spinner fa-3x"></i>
+    </div>
+    <div class=" pure-u-sm-1-1 pure-u-md-1-2 pure-u-lg-3-5">
+        <h2 class="content-head content-head-ribbon">Most recent posts</h2>
+    </div>
+    <div class="is-center pure-u-1-1">
+        <div class="margin__blog--menu pure-menu pure-menu-scrollable custom-restricted">
+            <ul class="pure-menu-list">
+                <% posts.forEach(function(post) { %>
+                <li class="pure-menu-item blogpost--entry"><a href="/blog/<%= post.url%>" class="white--text pure-menu-link"><%= post.title %></a></li>
+                <% }); %>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div>Here goes mail form</div>
+
+</body>
+</html>

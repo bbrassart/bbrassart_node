@@ -15,6 +15,11 @@ var years      = require('./app/routes/models/years');
 var blogposts       = require('./app/routes/models/blogs');
 var home       = require('./app/routes/home');
 
+// Set the view engine to html
+app.engine('.html', require('ejs').__express);
+app.set('view engine', 'html');
+app.set('views', __dirname + '/app/views');
+
 // Connect with DB
 mongoose.connect(
     'mongodb://' + process.env.MONGO_HOST + '/' + process.env.MONGO_DATABASE
@@ -25,7 +30,6 @@ mongoose.connect(
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(morgan('dev'));
-
 // Serve static files
 app.use('/app', express.static(__dirname + '/public'));
 app.use('/scripts', express.static(__dirname + '/node_modules'));
