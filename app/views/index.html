@@ -8,6 +8,7 @@
         <link type="text/css" rel="stylesheet" href="app/css/pure-min.css">
         <link type="text/css" rel="stylesheet" href="app/css/purecss_template.css">
         <link type="text/css" rel="stylesheet" href="app/css/main.css">
+        <script src="scripts/jquery/dist/jquery.min.js"></script>
         <script src="scripts/angular/angular.js"></script>
         <script src="scripts/angular-animate/angular-animate.js"></script>
         <script src="scripts/angular-resource/angular-resource.js"></script>
@@ -23,6 +24,10 @@
         <script src="app/js/services/apiService.js"></script>
         <script src="app/js/services/githubApiService.js"></script>
         <script src="app/js/services/cvApiService.js"></script>
+        <script src="app/js/anchor_animation.js"></script>
+        <script src="app/js/mobile_nav_menu.js"></script>
+        <script src="app/js/application.js"></script>
+
 
         <meta name="description" content="Welcome to BBrassart.me, my personal site">
         <title>Baptiste Brassart</title>
@@ -104,7 +109,9 @@
 
             </div>
             <cvscreen></cvscreen>
-            <div>Here goes mail form</div>
+
+            <% include contact.html %>
+            <% include footer.html %>
 
 
     </body>

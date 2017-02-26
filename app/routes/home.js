@@ -1,9 +1,7 @@
 var express = require('express');        // call express
 var router = express.Router();
 var Blogs = require('../models/blog');
-var mongoose   = require('mongoose');
-mongoose.Promise = global.Promise;
-
+var mailer = require('express-mailer');
 
 router.get('/', function(req, res) {
     res.render('index.html', {});
@@ -17,6 +15,24 @@ router.get('/blog/:url', function(req, res) {
             blog: data[0],
             posts: data[1]
         });
+    });
+});
+
+router.post('/contact', function(req, res) {
+
+    var backURL = req.header('Referer') || '/';
+
+    res.mailer.send('outboundEmail', {
+        to: process.env.GMAIL_USERNAME,
+        subject: req.body.name + ' contacted you',
+        message: req.body.message,
+        visitorEmail: req.body.email,
+        visitorName: req.body.name
+    }, function (err) {
+        if (err) {
+            res.redirect(backURL);
+        }
+        res.redirect(backURL);
     });
 });
 

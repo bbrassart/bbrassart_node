@@ -37,9 +37,9 @@
                             <b>{{xp.location}}</b>
                         </p>
                         <div class="pure-u-md-1-2">
-                            <p>Starting date: {{xp.starting_date}}</p>
+                            <p>Starting date: {{xp.starting_date | date: 'fullDate'}}</p>
                             <p ng-show="xp.ending_date">
-                                Ending date: {{xp.ending_date}}
+                                Ending date: {{xp.ending_date | date: 'fullDate'}}
                             </p>
                             <p ng-show="!xp.ending_date">
                                 Current

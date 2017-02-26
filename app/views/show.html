@@ -8,31 +8,36 @@
     <link type="text/css" rel="stylesheet" href="../app/css/pure-min.css">
     <link type="text/css" rel="stylesheet" href="../app/css/purecss_template.css">
     <link type="text/css" rel="stylesheet" href="../app/css/main.css">
+    <script src="../scripts/jquery/dist/jquery.min.js"></script>
+    <script src="../app/js/mobile_nav_menu.js"></script>
+    <script src="../app/js/anchor_animation.js"></script>
+    <script src="../app/js/application.js"></script>
+
     <meta name="description" content="Welcome to BBrassart.me, my personal site">
     <title>Baptiste Brassart</title>
 </head>
 <body>
-<div class="header">
+<div class="header blog--header">
     <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed" >
-        <a href="" id="my_name" class="pure-menu-heading">Baptiste Brassart</a>
+        <a href="/" id="my_name" class="pure-menu-heading">Baptiste Brassart</a>
         <div class="desktop-nav-menu">
             <ul class="pure-menu-list">
-                <li class="pure-menu-item"><a href="#projects" class="pure-menu-link">Projects</a></li>
-                <li class="pure-menu-item"><a href="#blog" class="pure-menu-link">Blog</a></li>
-                <li class="pure-menu-item"><a href="#github" class="pure-menu-link">GitHub</a></li>
-                <li class="pure-menu-item"><a href="#socialmedia" class="pure-menu-link">Social media</a></li>
-                <li class="pure-menu-item"><a href="#cv" class="pure-menu-link">CV</a></li>
+                <li class="pure-menu-item"><a href="/#projects" class="pure-menu-link">Projects</a></li>
+                <li class="pure-menu-item"><a href="/#blog" class="pure-menu-link">Blog</a></li>
+                <li class="pure-menu-item"><a href="/#github" class="pure-menu-link">GitHub</a></li>
+                <li class="pure-menu-item"><a href="/#socialmedia" class="pure-menu-link">Social media</a></li>
+                <li class="pure-menu-item"><a href="/#cv" class="pure-menu-link">CV</a></li>
                 <li class="pure-menu-item"><a href="#contact" class="pure-menu-link">Contact</a></li>
             </ul>
         </div>
         <div class="mobile-nav-menu">
             <select>
                 <option value="" selected="selected">Go to</option>
-                <option value="#projects">Projects</option>
-                <option value="#blog">Blog</option>
-                <option value="#github"> GitHub</option>
-                <option value="#socialmedia">Social media</option>
-                <option value="#cv">CV</option>
+                <option value="/#projects">Projects</option>
+                <option value="/#blog">Blog</option>
+                <option value="/#github"> GitHub</option>
+                <option value="/#socialmedia">Social media</option>
+                <option value="/#cv">CV</option>
                 <option value="#contact">Contact</option>
             </select>
         </div>
@@ -54,6 +59,7 @@
                     <a class='post-category post-category-<%=color%>'><%= tag %></a>
                     <% }); %>
                 </p>
+                <p class="post-meta"><%=blog.date.toDateString()%></p>
             </header>
             <div class="social--buttons">
                 <a href="https://twitter.com/share" class="twitter-share-button"{count} data-text='<%= blog.title %>' data-via="bbrassart" data-size="large">
@@ -63,11 +69,8 @@
             </div>
             <img alt="<%=blog.image_caption%>" class="first--image__dedicatedpage pure-img-responsive"
                  src="<%=blog.image%>">
-            <%=blog.intro.html_safe %>
-            <p class="post-meta"><%=blog.date%></p>
+            <%-blog.intro %>
             <%-blog.text%>
-            <div id="comments">
-            </div>
         </section>
     </div>
 </div>
@@ -91,7 +94,9 @@
     </div>
 </div>
 
-<div>Here goes mail form</div>
+<% include contact.html %>
+
+<% include footer.html %>
 
 </body>
 </html>

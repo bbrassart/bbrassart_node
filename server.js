@@ -7,6 +7,7 @@ dotenv.load();
 
 // call the packages we need
 var express    = require('express');
+var mailer = require('express-mailer');
 var app        = express();                 // define our app using express
 var bodyParser = require('body-parser');
 var morgan     = require('morgan');
@@ -24,6 +25,20 @@ app.set('views', __dirname + '/app/views');
 mongoose.connect(
     'mongodb://' + process.env.MONGO_HOST + '/' + process.env.MONGO_DATABASE
 );
+
+// Setting up express mailer
+
+mailer.extend(app, {
+    from: process.env.GMAIL_USERNAME,
+    host: 'smtp.gmail.com', // hostname
+    secureConnection: true, // use SSL
+    port: 465, // port for secure SMTP
+    transportMethod: 'SMTP', // default is SMTP. Accepts anything that nodemailer accepts
+    auth: {
+        user: process.env.GMAIL_USERNAME,
+        pass: process.env.GMAIL_PASSWORD
+    }
+});
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
