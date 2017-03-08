@@ -5,7 +5,12 @@
 var dotenv = require('dotenv');
 dotenv.load();
 
-// call the packages we need
+// Only required for flash messages
+var flash = require('connect-flash');
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
+
+// call the other packages we need
 var express    = require('express');
 var mailer = require('express-mailer');
 var app        = express();                 // define our app using express
@@ -15,6 +20,16 @@ var mongoose   = require('mongoose');
 var years      = require('./app/routes/models/years');
 var blogposts       = require('./app/routes/models/blogs');
 var home       = require('./app/routes/home');
+
+// Set up to use flash messages
+app.use(cookieParser());
+app.use(session({
+    secret: 'sid',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {}
+}));
+app.use(flash());
 
 // Set the view engine to html
 app.engine('.html', require('ejs').__express);

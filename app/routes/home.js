@@ -4,7 +4,7 @@ var Blogs = require('../models/blog');
 var mailer = require('express-mailer');
 
 router.get('/', function(req, res) {
-    res.render('index.html', {});
+    res.render('index.html', {flashMessage: req.flash('emailSent')});
 });
 
 router.get('/blog/:url', function(req, res) {
@@ -13,7 +13,8 @@ router.get('/blog/:url', function(req, res) {
     ]).then(function(data) {
         res.render('show.html', {
             blog: data[0],
-            posts: data[1]
+            posts: data[1],
+            flashMessage: req.flash('emailSent')
         });
     });
 });
@@ -32,6 +33,7 @@ router.post('/contact', function(req, res) {
         if (err) {
             res.redirect(backURL);
         }
+        req.flash('emailSent', 'Thanks for contacting me!');
         res.redirect(backURL);
     });
 });

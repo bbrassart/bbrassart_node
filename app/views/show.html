@@ -46,6 +46,9 @@
 
 <div class="content posts--column">
     <h2 class="content-head is-center blog--main__title">Blog #Unchained</h2>
+    <% if (flashMessage.length > 0) { %>
+        <p><%= flashMessage %></p>
+    <% } %>
     <div class="posts">
         <section class="post">
             <header class="post-header">

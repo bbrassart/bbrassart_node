@@ -61,6 +61,9 @@
         </div>
 
         <div class="splash-container">
+            <% if (flashMessage.length > 0) { %>
+                <p><%= flashMessage %></p>
+            <% } %>
             <div class="splash">
                 <h1 class="splash-head">Welcome to my site</h1>
                 <p class="splash-subhead">
