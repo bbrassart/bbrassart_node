@@ -45,10 +45,16 @@
 </div>
 
 <div class="content posts--column">
-    <h2 class="content-head is-center blog--main__title">Blog #Unchained</h2>
     <% if (flashMessage.length > 0) { %>
-        <p><%= flashMessage %></p>
+        <div class="flash-alert" id="flashMessage">
+                    <span class="flash-closebtn" onclick="this.parentElement.style.display='none';">
+                        &times;
+                    </span>
+            <%= flashMessage %>
+        </div>
     <% } %>
+    <h2 class="content-head is-center blog--main__title">Blog #Unchained</h2>
+
     <div class="posts">
         <section class="post">
             <header class="post-header">

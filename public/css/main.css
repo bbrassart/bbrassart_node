@@ -12,8 +12,32 @@
     position:relative;
 }
 
-/*ng-animates css properties*/
+/* Notification messages */
+.flash-alert {
+    padding: 15px;
+    background-color: #6FBEF3;
+    color: white;
+    margin-bottom: 15px;
+}
+.flash-closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.flash-closebtn:hover {
+    color: black;
+}
 
+.flash-content {
+    font-size: 16px;
+}
+
+/*ng-animates css properties*/
 .reduce-cv.ng-hide,
 .long-form-actions.ng-hide {
     opacity: 0;
