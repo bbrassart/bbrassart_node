@@ -33,7 +33,7 @@ router.post('/contact', function(req, res) {
         if (err) {
             res.redirect(backURL);
         }
-        req.flash('emailSent', 'Thanks for contacting me!');
+        req.flash('emailSent', 'Thanks for contacting me! I will get back to you in the coming days.');
         res.redirect(backURL);
     });
 });
