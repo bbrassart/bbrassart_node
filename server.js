@@ -36,10 +36,18 @@ app.engine('.html', require('ejs').__express);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/app/views');
 
+
+var envDatabase  = (function(env) {
+    switch (env) {
+        case 'production':
+            return process.env.PROD_MONGODB;
+        default:
+            return 'mongodb://' + process.env.MONGO_HOST + '/' + process.env.MONGO_DATABASE;
+    }
+})(process.env.NODE_ENV);
+
 // Connect with DB
-mongoose.connect(
-    'mongodb://' + process.env.MONGO_HOST + '/' + process.env.MONGO_DATABASE
-);
+mongoose.connect(envDatabase);
 
 // Setting up express mailer
 
