@@ -51,7 +51,7 @@ var envDatabase  = (function(env) {
     }
 })(process.env.NODE_ENV);
 
-mongoose.connect(process.env.MONGODB_URI, options);
+mongoose.connect(envDatabase, options);
 
 mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
 
