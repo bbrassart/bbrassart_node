@@ -40,7 +40,7 @@ app.set('views', __dirname + '/app/views');
 var envDatabase  = (function(env) {
     switch (env) {
         case 'production':
-            return process.env.PROD_MONGODB;
+            return process.env.MONGOLAB_URI;
         default:
             return 'mongodb://' + process.env.MONGO_HOST + '/' + process.env.MONGO_DATABASE;
     }
