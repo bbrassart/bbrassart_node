@@ -37,6 +37,9 @@ app.set('view engine', 'html');
 app.set('views', __dirname + '/app/views');
 
 
+var options = { server: { socketOptions: { keepAlive: 300000, connectTimeoutMS: 30000 } },
+    replset: { socketOptions: { keepAlive: 300000, connectTimeoutMS : 30000 } } };
+
 var envDatabase  = (function(env) {
     switch (env) {
         case 'production':
@@ -47,7 +50,9 @@ var envDatabase  = (function(env) {
 })(process.env.NODE_ENV);
 
 // Connect with DB
-mongoose.connect(envDatabase);
+mongoose.connect(envDatabase, options);
+
+mongoose.connection.on('error', console.error.bind(console, 'connection error:'));
 
 // Setting up express mailer
 
