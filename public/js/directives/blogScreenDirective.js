@@ -2,13 +2,14 @@ app.directive('blogscreen',  ['$sce', 'mainService', 'bsLoadingOverlayService', 
     function($sce, mainService, bsLoadingOverlayService, $window, $timeout) {
         ctrl = function() {
             var self = this;
-            self.numberOfPosts = 3;
+
+            self.lastArticleIndex = 3;
+
             self.blog = {};
-            self.tagColors = ["design", "pure", "js", "yui"];
             self.longForm = false;
 
             self.isLast = function(index) {
-                return index == self.numberOfPosts;
+                return index == self.lastArticleIndex;
             };
 
             self.isFirst = function(index) {
@@ -16,14 +17,14 @@ app.directive('blogscreen',  ['$sce', 'mainService', 'bsLoadingOverlayService', 
             };
 
             self.isMiddle = function(index) {
-                return index != self.numberOfPosts && index != 0;
+                return index != self.lastArticleIndex && index != 0;
             };
 
             self.init = function() {
                 bsLoadingOverlayService.start({
                     referenceId: 'blog-loading'
                 });
-                self.performRequest({id: self.numberOfPosts});
+                self.performRequest({id: self.lastArticleIndex});
             };
 
             self.performRequest = function(idParam) {

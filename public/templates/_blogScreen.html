@@ -3,7 +3,7 @@
          bs-loading-overlay-delay="1000">
         <h2 style="padding-top: 8px;" class="content-head is-center">Blog #Unchained</h2>
         <div class="posts" id="showBlog">
-            <p>Post {{vm.blog.currentIndex + 1}} out of 4</p>
+            <p>Post {{vm.blog.currentIndex + 1}} out of {{vm.lastArticleIndex + 1}}</p>
             <section class="post">
                 <header class="post-header">
                     <img class="post-avatar" alt="Baptiste's avatar"
@@ -14,8 +14,8 @@
                     <p class="post-meta">{{vm.blog.date | date:'fullDate'}}</p>
                     <p class="post-meta">
                         By <a class="post-author" href="#">{{vm.blog.author}}</a> under
-                <span ng-repeat="tag in vm.blog.tags track by $index">
-                    <a class="post-category post-category-{{vm.tagColors[$index]}}">
+                <span ng-repeat="tag in vm.blog.tags">
+                    <a class="post-category post-category-{{tag}}">
                         {{tag}}
                     </a>
                 </span>

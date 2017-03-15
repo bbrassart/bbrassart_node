@@ -63,9 +63,8 @@
                 <h2 class="post-title"><%=blog.title%></h2>
                 <p class="post-meta">
                     <a class="post-author"><%=blog.author%></a> under
-                    <% blog.tags.forEach(function(tag, index) { %>
-                    <% var color = ["design", "pure", "js", "yui"][index] %>
-                    <a class='post-category post-category-<%=color%>'><%= tag %></a>
+                    <% blog.tags.forEach(function(tag) { %>
+                    <a class='post-category post-category-<%=tag%>'><%= tag %></a>
                     <% }); %>
                 </p>
                 <p class="post-meta"><%=blog.date.toDateString()%></p>
