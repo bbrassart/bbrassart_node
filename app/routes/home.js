@@ -9,7 +9,7 @@ router.get('/', function(req, res) {
 
 router.get('/blog/:url', function(req, res) {
     Promise.all([
-        Blogs.findOne({url: req.params.url}).exec(), Blogs.find().exec()
+        Blogs.findOne({url: req.params.url}).exec(), Blogs.find().sort({date: -1}).exec()
     ]).then(function(data) {
         res.render('show.html', {
             blog: data[0],
