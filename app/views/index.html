@@ -16,9 +16,9 @@
         <script src="scripts/angular-loading-overlay-spinjs/dist/angular-loading-overlay-spinjs.js"></script>
         <script src="scripts/angular-loading-overlay/dist/angular-loading-overlay.js"></script>
         <script src="app/js/core.js"></script>
-        <script src="app/js/directives/blogScreenDirective.js"></script>
-        <script src="app/js/directives/githubScreenDirective.js"></script>
-        <script src="app/js/directives/cvScreenDirective.js"></script>
+        <script src="app/js/components/blog.component.js"></script>
+        <script src="app/js/components/github.component.js"></script>
+        <script src="app/js/components/cv.component.js"></script>
         <script src="app/js/services/mainService.js"></script>
         <script src="app/js/services/blogApiService.js"></script>
         <script src="app/js/services/apiService.js"></script>
@@ -98,8 +98,8 @@
                     </div>
                 </div>
             </div>
-            <blogscreen></blogscreen>
-            <githubscreen></githubscreen>
+            <blog></blog>
+            <github></github>
             <div class="content is-center posts--column" id="socialmedia">
                 <h2 style="padding-top: 8px;" class="content-head">Social media</h2>
 
@@ -116,7 +116,7 @@
 
 
             </div>
-            <cvscreen></cvscreen>
+            <cv></cv>
 
             <% include contact.html %>
             <% include footer.html %>
