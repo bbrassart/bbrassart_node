@@ -22,8 +22,8 @@
         <div class="ribbon">
             <div id="limitCv">
                 <div ng-repeat="xp in vm.experiences" class="experiences" ng-show="vm.isShowing" ng-cloak>
-                    <div ng-class="vm.isDesktop() ? 'line-separator' : ''"></div>
-                    <div class="xp-col pure-u-sm-1-1" ng-class="vm.isDesktop() ? 'med-col' : ''">
+                    <div ng-class="{ 'line-separator': vm.isDesktop() }"></div>
+                    <div class="xp-col pure-u-sm-1-1" ng-class="{ 'med-col': vm.isDesktop() }'">
                         <p>
                             <b>{{xp.title}}</b> at
                             <a class="company-link" target=_blank ng-href={{xp.official_url}}>
