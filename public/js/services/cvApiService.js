@@ -1,4 +1,4 @@
-app.factory('cvApiService', [
+app.service('cvApiService', [
     'apiService', function(apiService) {
         return {
             query: function(idParam) {

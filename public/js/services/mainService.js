@@ -1,4 +1,4 @@
-app.factory ('mainService', ['blogApiService', 'githubApiService', 'cvApiService', function(blogApiService, githubApiService, cvApiService) {
+app.service ('mainService', ['blogApiService', 'githubApiService', 'cvApiService', function(blogApiService, githubApiService, cvApiService) {
     var self = this;
     self.blog = {};
 
@@ -13,5 +13,4 @@ app.factory ('mainService', ['blogApiService', 'githubApiService', 'cvApiService
     self.getGithub = function() {
         return githubApiService.query();
     };
-    return self;
 }]);

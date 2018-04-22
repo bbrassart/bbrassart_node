@@ -1,4 +1,4 @@
-app.factory('blogApiService', [
+app.service('blogApiService', [
     'apiService', function(apiService) {
         return {
             get: function(idParam) {
