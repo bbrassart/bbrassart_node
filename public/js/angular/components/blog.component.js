@@ -1,4 +1,10 @@
-var BlogController = function($sce, mainService, bsLoadingOverlayService, $window, $timeout) {
+var BlogController = function(
+  $sce,
+  mainService,
+  bsLoadingOverlayService,
+  $window,
+  $timeout
+) {
   var self = this;
 
   self.lastArticleIndex = 3;
@@ -70,7 +76,14 @@ var BlogController = function($sce, mainService, bsLoadingOverlayService, $windo
 
 angular.module('myAngular')
   .component('blog', {
-    controller: ['$sce', 'mainService', 'bsLoadingOverlayService', '$window', '$timeout', BlogController],
+    controller: [
+      '$sce',
+      'mainService',
+      'bsLoadingOverlayService',
+      '$window',
+      '$timeout',
+      BlogController
+    ],
     controllerAs: 'vm',
-    templateUrl: 'app/templates/blog.template.html'
+    templateUrl: '/app/js/angular/components/blog.template.html'
   });

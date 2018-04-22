@@ -1,5 +1,9 @@
-
-var CvController = function(mainService,bsLoadingOverlayService, $timeout, $window) {
+var CvController = function(
+  mainService,
+  bsLoadingOverlayService,
+  $timeout,
+  $window
+) {
     var self = this;
     self.isShowing = false;
     self.experiences = [];
@@ -81,7 +85,13 @@ var CvController = function(mainService,bsLoadingOverlayService, $timeout, $wind
 
 angular.module('myAngular')
   .component('cv', {
-    controller: ['mainService','bsLoadingOverlayService', '$timeout', '$window', CvController],
+    controller: [
+      'mainService',
+      'bsLoadingOverlayService',
+      '$timeout',
+      '$window',
+      CvController
+    ],
     controllerAs: 'vm',
-    templateUrl: 'app/templates/cv.template.html'
+    templateUrl: '/app/js/angular/components/cv.template.html'
   });

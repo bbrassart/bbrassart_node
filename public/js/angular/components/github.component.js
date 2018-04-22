@@ -1,5 +1,9 @@
-var GithubController = function(mainService, bsLoadingOverlayService, $window, $timeout) {
-
+var GithubController = function(
+  mainService,
+  bsLoadingOverlayService,
+  $window,
+  $timeout
+) {
   var self = this;
   self.githubProjects = [];
   self.buttonText = "See my profile";
@@ -56,7 +60,13 @@ var GithubController = function(mainService, bsLoadingOverlayService, $window, $
 
 angular.module('myAngular')
   .component('github', {
-    controller: ['mainService', 'bsLoadingOverlayService', '$window', '$timeout', GithubController],
+    controller: [
+      'mainService',
+      'bsLoadingOverlayService',
+      '$window',
+      '$timeout',
+      GithubController
+    ],
     controllerAs: 'vm',
-    templateUrl: 'app/templates/github.template.html'
+    templateUrl: '/app/js/angular/components/github.template.html'
 });
