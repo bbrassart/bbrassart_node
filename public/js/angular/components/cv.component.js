@@ -9,69 +9,71 @@ var CvController = function(
     self.experiences = [];
     self.tagColors = ["design", "pure", "js", "yui"];
 
-    self.showCv = function(id) {
-        bsLoadingOverlayService.start({
+    var getShowCVSuccessCallback = function(response) {
+      self.experiences = response[0].experiences;
+      $timeout(
+        function() {
+          self.isShowing = true;
+          bsLoadingOverlayService.stop({
             referenceId: 'header-cv-loading'
-        });
-        mainService.getExperiences({id: id})
-            .$promise.then(
-            function(response) {
-                self.experiences = response[0].experiences;
-                $timeout(
-                    function() {
-                        self.isShowing = true;
-                        bsLoadingOverlayService.stop({
-                            referenceId: 'header-cv-loading'
-                        });
-                    }
-                    , 200
-                );
-            },
-            function(err) {
-                self.error = err;
-                self.isShowing = false;
-                bsLoadingOverlayService.stop({
-                    referenceId: 'header-cv-loading'
-                });
-            }
-        );
+          });
+        }
+        , 200
+      );
     };
 
-    self.refreshCv = function(id) {
-        bsLoadingOverlayService.start({
+    var getShowCVErrorCallback =  function(err) {
+      self.error = err;
+      self.isShowing = false;
+      bsLoadingOverlayService.stop({
+        referenceId: 'header-cv-loading'
+      });
+    };
+
+    var getExperiencesSuccessCallback = function(response) {
+      self.experiences = response[0].experiences;
+      $timeout(
+        function() {
+          bsLoadingOverlayService.stop({
             referenceId: 'body-cv-loading'
-        });
-        mainService.getExperiences({id: id})
-            .$promise.then(
-            function(response) {
-                self.experiences = response[0].experiences;
-                $timeout(
-                    function() {
-                        bsLoadingOverlayService.stop({
-                            referenceId: 'body-cv-loading'
-                        });
-                    }
-                    , 1500
-                );
-            },
-            function(err) {
-                self.error = err;
-                self.isShowing = false;
-                bsLoadingOverlayService.stop({
-                    referenceId: 'body-cv-loading'
-                });
-            }
-        );
+          });
+        }
+        , 1500
+      );
+    };
 
-
+    var getExperiencesErrorCallback = function(err) {
+      self.error = err;
+      self.isShowing = false;
+      bsLoadingOverlayService.stop({
+        referenceId: 'body-cv-loading'
+      });
     };
 
     self.showExperiences = function(id) {
-        if (self.isShowing) {
-            self.refreshCv(id);
-        } else if (!self.isShowing) {
-            self.showCv(id);
-        }
+      if (self.isShowing) {
+        bsLoadingOverlayService.start({
+          referenceId: 'body-cv-loading'
+        });
+
+        mainService
+          .getExperiences({id: id})
+          .$promise
+          .then(getExperiencesSuccessCallback)
+          .catch(getExperiencesErrorCallback);
+
+      } else {
+
+        bsLoadingOverlayService.start({
+          referenceId: 'header-cv-loading'
+        });
+
+        mainService
+          .getExperiences({id: id})
+          .$promise
+          .then(getShowCVSuccessCallback)
+          .catch(getShowCVErrorCallback);
+      }
     };
 
     self.isDesktop = function() {

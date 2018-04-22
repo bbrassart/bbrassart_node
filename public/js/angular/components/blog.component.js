@@ -6,44 +6,39 @@ var BlogController = function(
   $timeout
 ) {
   var self = this;
-
   self.lastArticleIndex = 3;
-
   self.blog = {};
   self.longForm = false;
 
   self.isLast = function(index) {
-    return index == self.lastArticleIndex;
+    return index === self.lastArticleIndex;
   };
 
   self.isFirst = function(index) {
-    return index == 0;
+    return index === 0;
   };
 
   self.isMiddle = function(index) {
-    return index != self.lastArticleIndex && index != 0;
+    return index !== self.lastArticleIndex && index !== 0;
   };
 
-  self.init = function() {
-    bsLoadingOverlayService.start({
-      referenceId: 'blog-loading'
-    });
-    self.performRequest({id: self.lastArticleIndex});
+  var getBlogSuccessCallback = function(response) {
+    self.blog = response;
+    self.trustedLongText = $sce.trustAsHtml(self.blog.text);
+    $timeout(
+      function() {
+        bsLoadingOverlayService.stop({
+          referenceId: 'blog-loading'
+        });
+      }, 50
+    );
   };
 
   self.performRequest = function(idParam) {
-    mainService.getBlog(idParam)
-      .$promise.then( function(response) {
-        self.blog = response;
-        self.trustedLongText = $sce.trustAsHtml(self.blog.text);
-        $timeout(function() {
-            bsLoadingOverlayService.stop({
-              referenceId: 'blog-loading'
-            });
-          }, 50
-        )
-      }
-    )
+    mainService
+      .getBlog(idParam)
+      .$promise
+      .then(getBlogSuccessCallback);
   };
 
   self.triggerPreviousPost = function(index) {
@@ -69,6 +64,13 @@ var BlogController = function(
 
   self.isLongForm = function() {
     self.longForm = true;
+  };
+
+  self.init = function() {
+    bsLoadingOverlayService.start({
+      referenceId: 'blog-loading'
+    });
+    self.performRequest({id: self.lastArticleIndex});
   };
 
   self.init();

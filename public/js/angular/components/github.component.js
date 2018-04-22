@@ -13,33 +13,36 @@ var GithubController = function(
     return $window.innerWidth > 558;
   };
 
+  var getGithubSuccessCallback = function(response) {
+    self.githubProjects = response;
+    $timeout(
+      function() {
+        self.isShowing = true;
+        self.buttonText = "Make me smaller";
+        bsLoadingOverlayService.stop({
+          referenceId: 'github-loading'
+        });
+      }, 200
+    );
+  };
+
+  var getGithubErrorCallback = function(err) {
+    self.error = err;
+    self.isShowing = false;
+    bsLoadingOverlayService.stop({
+      referenceId: 'github-loading'
+    });
+  };
+
   self.performRequest = function() {
     bsLoadingOverlayService.start({
       referenceId: 'github-loading'
     });
-    mainService.getGithub()
-      .$promise.then(
-      function(response) {
-        self.githubProjects = response;
-        $timeout(function() {
-            self.isShowing = true;
-            self.buttonText = "Make me smaller";
-            bsLoadingOverlayService.stop({
-              referenceId: 'github-loading'
-            });
-          }, 200
-        );
-
-      },
-      function(err) {
-
-        self.error = err;
-        self.isShowing = false;
-        bsLoadingOverlayService.stop({
-          referenceId: 'github-loading'
-        });
-      }
-    );
+    mainService
+      .getGithub()
+      .$promise
+      .then(getGithubSuccessCallback)
+      .catch(getGithubErrorCallback);
   };
 
   self.toggleGithub = function() {
@@ -47,7 +50,7 @@ var GithubController = function(
       self.isShowing = false;
       self.buttonText = "See my profile";
     } else if (!self.isShowing) {
-      if (self.githubProjects.length > 0) {
+      if (self.githubProjects.length) {
         self.isShowing = true;
         self.buttonText = "Make me smaller";
       }
