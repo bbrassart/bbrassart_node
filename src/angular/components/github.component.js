@@ -1,3 +1,6 @@
+var templateUrl = require('ngtemplate-loader!html-loader!./github.template.html');
+
+
 var GithubController = function(
   mainService,
   bsLoadingOverlayService,
@@ -71,5 +74,5 @@ angular.module('myAngular')
       GithubController
     ],
     controllerAs: 'vm',
-    templateUrl: '/app/js/angular/components/github.template.html'
+    templateUrl: templateUrl
 });

@@ -1,3 +1,5 @@
+var templateUrl = require('ngtemplate-loader!html-loader!./blog.template.html');
+
 var BlogController = function(
   $sce,
   mainService,
@@ -87,5 +89,5 @@ angular.module('myAngular')
       BlogController
     ],
     controllerAs: 'vm',
-    templateUrl: '/app/js/angular/components/blog.template.html'
+    templateUrl: templateUrl
   });

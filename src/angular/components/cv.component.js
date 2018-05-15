@@ -1,3 +1,6 @@
+var templateUrl = require('ngtemplate-loader!html-loader!./cv.template.html');
+
+
 var CvController = function(
   mainService,
   bsLoadingOverlayService,
@@ -95,5 +98,5 @@ angular.module('myAngular')
       CvController
     ],
     controllerAs: 'vm',
-    templateUrl: '/app/js/angular/components/cv.template.html'
+    templateUrl: templateUrl
   });

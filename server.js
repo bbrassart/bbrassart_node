@@ -77,6 +77,7 @@ app.use(morgan('dev'));
 // Serve static files
 app.use('/app', express.static(__dirname + '/public'));
 app.use('/scripts', express.static(__dirname + '/node_modules'));
+app.use('/src', express.static(__dirname + '/src'));
 
 // REGISTER ROUTES
 // =============================================================================
