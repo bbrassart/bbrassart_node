@@ -7,7 +7,9 @@
                 </div>
                 <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
                     <h2 class="content-head content-head-ribbon">Curriculum Vitae
-                        <button class="pure-button button-xsmall button-primary reduce-cv" ng-click="vm.reduceCv()" ng-show="vm.isShowing">
+                        <button class="pure-button button-xsmall button-primary reduce-cv"
+                                ng-click="vm.reduceCv()"
+                                ng-show="vm.dropdown.isExpanded">
                             Reduce CV
                         </button>
                     </h2>
@@ -21,7 +23,10 @@
         </div>
         <div class="ribbon">
             <div id="limitCv">
-                <div ng-repeat="xp in vm.experiences" class="experiences" ng-show="vm.isShowing" ng-cloak>
+                <div ng-repeat="xp in vm.experiences"
+                     class="experiences"
+                     ng-show="vm.dropdown.isExpanded"
+                     ng-cloak>
                     <div ng-class="{ 'line-separator': vm.isDesktop() }"></div>
                     <div class="xp-col pure-u-sm-1-1" ng-class="{'med-col': vm.isDesktop()}">
                         <p>

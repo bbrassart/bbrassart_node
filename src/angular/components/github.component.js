@@ -12,7 +12,7 @@ var GithubController = function(
   self.githubProjects = [];
   self.buttonText = "See my profile";
 
-  self.dropdowns = {
+  self.dropdown = {
     isExpanded: false
   };
 
@@ -24,7 +24,7 @@ var GithubController = function(
     self.githubProjects = response;
     $timeout(
       function() {
-        self.dropdowns.isExpanded = true;
+        self.dropdown.isExpanded = true;
         self.buttonText = "Make me smaller";
         bsLoadingOverlayService.stop({
           referenceId: 'github-loading'
@@ -35,7 +35,7 @@ var GithubController = function(
 
   var getGithubErrorCallback = function(err) {
     self.error = err;
-    self.dropdowns.isExpanded = false;
+    self.dropdown.isExpanded = false;
     bsLoadingOverlayService.stop({
       referenceId: 'github-loading'
     });
@@ -62,8 +62,8 @@ var GithubController = function(
    * @returns {null|undefined}
    */
   self.toggleGithub = function() {
-    if (self.dropdowns.isExpanded) {
-      self.dropdowns.isExpanded = false;
+    if (self.dropdown.isExpanded) {
+      self.dropdown.isExpanded = false;
       $timeout.cancel(buttonTextChangeTimeout);
       buttonTextChangeTimeout = $timeout(
         function() {
@@ -73,7 +73,7 @@ var GithubController = function(
       return null;
     }
     if (self.githubProjects.length) {
-      self.dropdowns.isExpanded = true;
+      self.dropdown.isExpanded = true;
       $timeout.cancel(buttonTextChangeTimeout);
       buttonTextChangeTimeout = $timeout(
         function() {

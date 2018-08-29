@@ -14,7 +14,9 @@
             <div ng-if="vm.error">
                 Sorry, something went wrong....
             </div>
-            <div id="limitGithub" ng-show="vm.dropdowns.isExpanded" class="githubTable is-center pure-u-1-1">
+            <div id="limitGithub"
+                 class="githubTable is-center pure-u-1-1"
+                 ng-show="vm.dropdown.isExpanded">
                 <h2 ng-cloak class="github--projects__text content-head content-head-ribbon">
                     Currently working on {{vm.githubProjects.length}} projects
                 </h2>
