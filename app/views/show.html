@@ -9,9 +9,8 @@
     <link type="text/css" rel="stylesheet" href="../app/css/purecss_template.css">
     <link type="text/css" rel="stylesheet" href="../app/css/main.css">
     <script src="../scripts/jquery/dist/jquery.min.js"></script>
-    <script src="../app/js/mobile_nav_menu.js"></script>
-    <script src="../app/js/anchor_animation.js"></script>
     <script src="../app/js/application.js"></script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
     <meta name="description" content="Welcome to BBrassart.me, my personal site">
     <title>Baptiste Brassart</title>
@@ -70,10 +69,20 @@
                 <p class="post-meta"><%=blog.date.toDateString()%></p>
             </header>
             <div class="social--buttons">
-                <a href="https://twitter.com/share" class="twitter-share-button"{count} data-text='<%= blog.title %>' data-via="bbrassart" data-size="large">
+                <a href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+                   class="twitter-share-button"
+                   data-text='<%= blog.title %>'
+                   data-via="bbrassart"
+                   data-size="large"
+                   data-show-count="false">
                     Tweet
                 </a>
-                <a href="https://twitter.com/bbrassart" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @bbrassart</a>
+                <a href="https://twitter.com/bbrassart?ref_src=twsrc%5Etfw"
+                   class="twitter-follow-button"
+                   data-size="large"
+                   data-show-count="true">
+                    Follow @bbrassart
+                </a>
             </div>
             <img alt="<%=blog.image_caption%>" class="first--image__dedicatedpage pure-img-responsive"
                  src="<%=blog.image%>">
