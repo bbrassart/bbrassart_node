@@ -29,7 +29,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-cloak ng-repeat="project in vm.githubProjects">
+                    <tr ng-cloak ng-repeat="project in vm.githubProjects | orderBy: 'updated_at' : true">
                         <th>
                             <a class='repo-link' href="https://www.github.com/{{project.full_name}}" target=_blank>
                                 {{project.name}}

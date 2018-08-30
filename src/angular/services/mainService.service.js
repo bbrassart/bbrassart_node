@@ -15,7 +15,7 @@ angular.module('myAngular')
     };
 
     self.getExperiences = function(idParam) {
-      return cvApiService.query(idParam);
+      return cvApiService.get(idParam);
     };
 
     self.getGithub = function() {

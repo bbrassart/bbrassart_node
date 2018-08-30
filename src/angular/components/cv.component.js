@@ -15,94 +15,47 @@ var CvController = function(
       isExpanded: false
     };
 
-    /**
-     * Success callback when first call to load experience is successful
-     *
-     * @returns {undefined}
-     */
-    var getShowCVSuccessCallback = function(response) {
-      self.experiences = response[0].experiences;
-      $timeout(
-        function() {
-          self.dropdown.isExpanded = true;
-          bsLoadingOverlayService.stop({
-            referenceId: 'header-cv-loading'
-          });
-        }
-        , 200
-      );
-    };
-
-    /**
-     * Error callback executed if API call to load all XP fails
-     *
-     * @returns {undefined}
-     */
-    var getShowCVErrorCallback =  function(err) {
-      self.error = err;
-      self.dropdown.isExpanded = false;
-      bsLoadingOverlayService.stop({
-        referenceId: 'header-cv-loading'
-      });
-    };
-
-    var getExperiencesSuccessCallback = function(response) {
-      self.experiences = response[0].experiences;
-      $timeout(
-        function() {
-          bsLoadingOverlayService.stop({
-            referenceId: 'body-cv-loading'
-          });
-        }
-        , 1500
-      );
-    };
-
-  /**
-   * Error callback executed if API call to load XP fails
-   *
-   * @returns {undefined}
-   */
-    var getExperiencesErrorCallback = function(err) {
-      self.error = err;
-      self.dropdown.isExpanded = false;
-      bsLoadingOverlayService.stop({
-        referenceId: 'body-cv-loading'
-      });
-    };
-
   /**
    * If dropdown is expanded, trigger loading effect on experiences div and load next XP.
    * If dropdown is not expanded, trigger loading effect on header and load next XP.
    *
-   * @param {number} id
+   * @param {Number} id
    *
-   * @returns {null|undefined}
+   * @returns {undefined}
    */
     self.showExperiences = function(id) {
-      if (self.dropdown.isExpanded) {
-        bsLoadingOverlayService.start({
-          referenceId: 'body-cv-loading'
-        });
-
-        mainService
-          .getExperiences({id: id})
-          .$promise
-          .then(getExperiencesSuccessCallback)
-          .catch(getExperiencesErrorCallback);
-
-        return null;
-      }
+      var loadingMaskName =
+        self.dropdown.isExpanded ? 'body-cv-loading' : 'header-cv-loading';
 
       bsLoadingOverlayService.start({
-        referenceId: 'header-cv-loading'
+        referenceId: loadingMaskName
       });
+
+      var timeoutInMs = self.dropdown.isExpanded ? 1500 : 200;
 
       mainService
         .getExperiences({id: id})
         .$promise
-        .then(getShowCVSuccessCallback)
-        .catch(getShowCVErrorCallback);
+        .then(function(response) {
+          self.experiences = response.experiences;
+          $timeout(
+            function () {
+              if(!self.dropdown.isExpanded) {
+                self.dropdown.isExpanded = true;
+              }
+              bsLoadingOverlayService.stop({
+                referenceId: loadingMaskName
+              });
+            }
+           , timeoutInMs
+          );
+        }).catch(function (err) {
+          self.error = err;
+          self.dropdown.isExpanded = false;
+          bsLoadingOverlayService.stop({
+            referenceId: loadingMaskName
+          });
+        });
     };
 
     self.isDesktop = function() {
