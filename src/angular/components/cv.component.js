@@ -31,7 +31,7 @@ var CvController = function(
         referenceId: loadingMaskName
       });
 
-      var timeoutInMs = self.dropdown.isExpanded ? 1500 : 200;
+      var timeoutInMs = self.dropdown.isExpanded ? 1800 : 200;
 
       mainService
         .getExperiences({id: id})

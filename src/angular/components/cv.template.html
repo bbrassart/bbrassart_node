@@ -23,7 +23,7 @@
         </div>
         <div class="ribbon">
             <div id="limitCv">
-                <div ng-repeat="xp in vm.experiences"
+                <div ng-repeat="xp in vm.experiences track by $index"
                      class="experiences"
                      ng-show="vm.dropdown.isExpanded"
                      ng-cloak>
@@ -56,11 +56,10 @@
                             </a>
                         </div>
                         <br><br>
-                    <span ng-repeat="tag in xp.tags track by $index">
-                        <span class="post-category post-category-{{vm.tagColors[$index]}}">
+                        <span ng-repeat="tag in xp.tags track by $index"
+                              class="post-category post-category-{{vm.tagColors[$index]}}">
                             {{tag}}
                         </span>
-                    </span>
                     </div>
                     <br><br>
                 </div>
