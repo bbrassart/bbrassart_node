@@ -20,7 +20,7 @@
     "express-mailer": "^0.3.1",
     "express-session": "^1.15.1",
     "jquery": "^3.1.1",
-    "mongoose": "4.1.9",
+    "mongoose": "4.13.21",
     "morgan": "^1.7.0",
     "nodemon": "^1.18.3",
     "spin": "0.0.1",
